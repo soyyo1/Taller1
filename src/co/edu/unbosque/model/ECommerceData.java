@@ -5,7 +5,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import co.edu.unbosque.model.persistence.LeerCSV;
+import co.edu.unbosque.model.persistence.EcommerceDataDAO;
 
 public class ECommerceData {
 
@@ -20,17 +20,17 @@ public class ECommerceData {
 	private String customerID;
 	private String country;
 
-	private LeerCSV leerCSV;
+	private EcommerceDataDAO leerCSV;
 
 	private ArrayList<ECommerceData> arrayCommerceData = new ArrayList<ECommerceData>();
 
 	public ECommerceData() {
 
-		leerCSV = new LeerCSV();
+		leerCSV = new EcommerceDataDAO();
 	}
 
 	public ECommerceData(String invoiceNo, String stockCode, String description, int quantity, Date invoiceDate,
-			float unitPrice, String customerID, String country, LeerCSV leerCSV,
+			float unitPrice, String customerID, String country, EcommerceDataDAO leerCSV,
 			ArrayList<ECommerceData> arrayCommerceData) {
 
 		this.invoiceNo = invoiceNo;
@@ -128,11 +128,11 @@ public class ECommerceData {
 		this.country = country;
 	}
 
-	public LeerCSV getLeerCSV() {
+	public EcommerceDataDAO getLeerCSV() {
 		return leerCSV;
 	}
 
-	public void setLeerCSV(LeerCSV leerCSV) {
+	public void setLeerCSV(EcommerceDataDAO leerCSV) {
 		this.leerCSV = leerCSV;
 	}
 
@@ -144,24 +144,6 @@ public class ECommerceData {
 		this.arrayCommerceData = arrayCommerceData;
 	}
 
-	public String findPartiallyByDescription() {
-		
-
-		String lista = "";
-		lista = lista + "*************************************************************************************\n";
-
-		SimpleDateFormat formateador = new SimpleDateFormat("yyyy/MM/dd");
-		formateador.setLenient(false);
-
-		for (int i = 0; i < this.arrayCommerceData.size(); i++) {
-			lista = lista + leerCSV.getArrayCommerceData().get(i).getCountry() + "\n";
-
-			
-			
-		}
-		return lista;
-
-	}
 
 	
 }

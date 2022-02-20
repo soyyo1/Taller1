@@ -12,11 +12,11 @@ import java.util.Scanner;
 
 import co.edu.unbosque.model.ECommerceData;
 
-public class LeerCSV {
+public class EcommerceDataDAO {
 
 	private ArrayList<ECommerceData> arrayCommerceData = new ArrayList<ECommerceData>();
 
-	public LeerCSV() {
+	public EcommerceDataDAO() {
 
 	}
 
@@ -25,7 +25,7 @@ public class LeerCSV {
 		try {
 			bufferLectura = new BufferedReader(new FileReader("data.csv"));
 
-			SimpleDateFormat formateador = new SimpleDateFormat("yyyy/MM/dd");
+			SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyy");
 
 			String linea = bufferLectura.readLine();
 
@@ -72,11 +72,11 @@ public class LeerCSV {
 		}
 	}
 
-	public void prueba() {
+	public void findPartiallyByDescription() {
 
 		for (int i = 0; i < arrayCommerceData.size(); i++) {
 
-			System.out.println(arrayCommerceData.get(i).getDescription() + "      Si funciona gonorrea");
+			System.out.println(arrayCommerceData.get(i).getInvoiceDate());
 		}
 	}
 
