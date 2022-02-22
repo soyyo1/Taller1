@@ -72,12 +72,48 @@ public class EcommerceDataDAO {
 		}
 	}
 
-	public void findPartiallyByDescription() {
+	public void findPartiallyByDescription(String search, int initMonth, int endMonth) {
+
+		int encontrado;
 
 		for (int i = 0; i < arrayCommerceData.size(); i++) {
 
-			System.out.println(arrayCommerceData.get(i).getInvoiceDate());
+			encontrado = arrayCommerceData.get(i).getDescription().toLowerCase().indexOf(search.toLowerCase());
+
+			Date fecha1 = this.ubicarMes(initMonth);
+			Date fecha2 = this.ubicarMes(endMonth);
+
+			if (arrayCommerceData.get(i).getInvoiceDate().after(fecha1)
+					&& arrayCommerceData.get(i).getInvoiceDate().before(fecha2)) {
+
+				if (encontrado != -1) {
+
+					System.out.println(arrayCommerceData.get(i).getDescription() + "           "
+							+ arrayCommerceData.get(i).getInvoiceDate());
+
+				}
+
+			}
+
 		}
+	}
+
+	public Date ubicarMes(int date) {
+
+		SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+
+		Date fechaSeleccionada = null;
+
+		try {
+
+			fechaSeleccionada = formateador.parse("01/" + date + "/2011");
+		} catch (ParseException e) {
+			e.printStackTrace();
+
+		}
+
+		return fechaSeleccionada;
+
 	}
 
 	public ArrayList<ECommerceData> getArrayCommerceData() {
