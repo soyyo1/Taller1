@@ -18,7 +18,10 @@ public class EcommerceDataDAO {
 	private ArrayList<ECommerceData> arrayCommerceData = new ArrayList<ECommerceData>();
 	private Vista vista;
 
-
+/**
+ * El metodo uploadData se encarga de leer el archivo data.csv que es la informacion usada para este programa
+ * 
+ */
 	public void uploadData() {
 		BufferedReader bufferLectura = null;
 		try {
@@ -70,7 +73,13 @@ public class EcommerceDataDAO {
 			}
 		}
 	}
-
+/**
+ * el metodo indPartiallyByDescription hace un busqueda del objeto al recibir la descripcion y hacer un filtro de usqueda 
+ * entre el mes inicial y el mes final
+ * @param search
+ * @param initMonth
+ * @param endMonth
+ */
 	public void findPartiallyByDescription(String search, int initMonth, int endMonth) {
 
 		int encontrado;
@@ -97,7 +106,11 @@ public class EcommerceDataDAO {
 
 		}
 	}
-
+/**
+ * El metodo ubicarmes, ubica el numero del mes dentro del formato SimpleDateFormat
+ * @param date
+ * @return
+ */
 	public Date ubicarMes(int date) {
 
 		SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
@@ -115,7 +128,11 @@ public class EcommerceDataDAO {
 		return fechaSeleccionada;
 
 	}
-
+/**
+ * El metodo findByInvoiceNo se encarga de buscar los objetos por el InvoiceNo y mostrar una factura
+ * de estos
+ * @param codigo
+ */
 	public void findByInvoiceNo(String codigo) {
 
 //		String codigo = "536365";
@@ -173,7 +190,16 @@ public class EcommerceDataDAO {
 		double resultado = valorTotal;
 		System.out.println("TOTAL VENTAS :  " + "" + resultado + "$");
 	}
-
+/**
+ * El metodo countByStockCode va a pedirle al ususario el stockcode
+ * y este a su vez le va mostrar la cantidad del producto, se le aisgna una ruta
+ * donde va a leer los datos (data.csv) Guarda estos en un arreglo
+ * por fila y separando estos espacios de arreglo por un .split (",")
+ * y va cada vez cuando pase por el arreglo [1] le va sumar 1 a la variable cantidad
+ * y a la vez recorrera el arreglo [3]  
+ * @param variable
+ * @return
+ */
 	public Integer countByStockCode(String variable) {
 		FileReader file;
 		BufferedReader br;

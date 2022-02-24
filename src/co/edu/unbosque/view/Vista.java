@@ -43,7 +43,7 @@ public class Vista extends JFrame {
 	}
 
 	/**
-	 * Pide un dato de tipo string con el uso de JOptioPane
+	 * El metodo pedirRequerimientoInicial genera un menu para seleccionar el requerimiento que desea realizar 
 	 * 
 	 * @return
 	 */
@@ -54,7 +54,11 @@ public class Vista extends JFrame {
 				"Ingrese el requerimiento que desea: \n 1) sumTotalSales \n 2) findByInvoiceNo \n 3) countByStockCode \n 4) avgMonthlySales \n 5) findPartiallyByDescription");
 		return dato;
 	}
-	
+	/**
+	 * El metodo pedirRequerimiento2 pide el invoiceNo para realizar la busqueda para el
+	 * requerimiento 3
+	 * @return
+	 */
 	public String pedirRequerimiento2() {
 		String dato = "";
 		dato = JOptionPane.showInputDialog(null,
@@ -62,6 +66,10 @@ public class Vista extends JFrame {
 		return dato;
 	}
 	
+	/**
+	 * El metodo pedirRequerimiento3 pide el StockCode para la busqueda 
+	 * @return
+	 */
 	public String pedirRequerimiento3() {
 		String dato = "";
 		dato = JOptionPane.showInputDialog(null,
@@ -75,13 +83,19 @@ public class Vista extends JFrame {
 				"Ingrese la descripción del producto que desea buscar: ");
 		return dato;
 	}
-	
+	/**
+	 * El metodo pedirRequerimiento4MesInicial pide el requerimiento del mes inicial 
+	 * @return
+	 */
 	public int pedirRequerimiento4MesInicial() {
 		int numero = 0;
 		numero = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el mes incial de busqueda: "));
 		return numero;
 	}
-	
+	/**
+	 * El metodo pedirRequerimiento4MesFinal pide el requerimiento del mes final 
+	 * @return
+	 */
 	public int pedirRequerimiento4MesFinal() {
 		int numero = 0;
 		numero = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el mes final de busqueda: "));
@@ -94,22 +108,6 @@ public class Vista extends JFrame {
 	 * @return
 	 */
 
-	public int pedirDatoEntero() {
-		int numero = 0;
-		numero = Integer.parseInt(JOptionPane.showInputDialog(null, "Entre Nùmero:"));
-		return numero;
-	}
-
-	/**
-	 * Se generan los getters y setters
-	 * 
-	 */
-	public Panelvista getPanel() {
-		return panel;
-	}
-
-	public void setPanel(Panelvista panel) {
-		this.panel = panel;
-	}
+	
 
 }

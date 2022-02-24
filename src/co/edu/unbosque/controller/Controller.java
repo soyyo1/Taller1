@@ -18,6 +18,9 @@ public class Controller {
 		iniciar();
 
 	}
+	/**
+	 * El metodo iniciar se encarga llamar a todos los metodos para que funcionen siempre y cuando cumplan con un condicional 
+	 */
 
 	public void iniciar() {
 
