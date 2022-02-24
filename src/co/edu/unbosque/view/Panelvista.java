@@ -9,6 +9,10 @@ import javax.swing.border.TitledBorder;
 import co.edu.unbosque.controller.Controller;
 
 public class Panelvista extends JLabel{
+	/**
+	 * Se crean los componentes para la ventana principal de la intefaz usando el java swing 
+	 * y se crean palabras clave para el uso de estas en los metodos oyentes 
+	 */
 	private JButton butsumTotalSales;
 	private JButton butfindByInvoiceNo;
 	private JButton butcountByStockCode;
@@ -19,7 +23,10 @@ public class Panelvista extends JLabel{
 	public static final String STOCK = "unidades vendidas por stock";
 	public static final String PROMEDIO = "Promedio Ventas Mensuales";
 	public static final String BUSQUEDA = "Busqueda";
-
+/**
+ * Con ayuda de las librerias de java swing se parametrisa las dimenciones o la organizacion de los componentes
+ * en la ventana en este caso usando un GridLayout entre otras herramientas 
+ */
 	public Panelvista (Controller control) {
 		setLayout(new GridLayout (4,4));
 		TitledBorder border = BorderFactory.createTitledBorder("")	;
@@ -27,6 +34,9 @@ public class Panelvista extends JLabel{
 		setBorder(border);
 		inicializarComponentes(control);
 	}
+	/**
+	 * Se crea un metodo para inicializar los componentes 
+	 */
 	
 	public void inicializarComponentes (Controller control) {
 		butsumTotalSales = new JButton("Total Ventas");
@@ -40,7 +50,10 @@ public class Panelvista extends JLabel{
 		add(butavgMonthlySales);
 		add(butfindPartiallyByDescription);
 	}
-
+ /**
+  * Se generan los getter y setters
+  * 
+  */
 	public JButton getButsumTotalSales() {
 		return butsumTotalSales;
 	}

@@ -11,13 +11,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import co.edu.unbosque.model.ECommerceData;
+import co.edu.unbosque.view.Vista;
 
 public class EcommerceDataDAO {
 
 	private ArrayList<ECommerceData> arrayCommerceData = new ArrayList<ECommerceData>();
+	private Vista vista;
 
 	public EcommerceDataDAO() {
-
+//		sumTotalSales();
+		findByInvoiceNo();
+		vista = new Vista(null);
 	}
 
 	public void uploadData() {
@@ -97,6 +101,79 @@ public class EcommerceDataDAO {
 
 		}
 	}
+	
+	/**
+	 * El metodo sumTotalSales tiene como fin operacional mostrarme el totalde ventas, para esto, toma los datos de la ruta C:\\Users\\Perez\\Taller1/data.csv
+	 * lee los datos Guarda estos en un arreglo por fila y separando estos espacios de arreglo por un .split (",")
+	 * en una variable local llamada valorTotal se hace una suma ciclica de las posiciones del arreglo, [3] es decir Quantity y la posicion [5] es decir UnitPrice
+	 * toma estos dos datos los pasa a tipo float y los multiplica para asi dar el valor total de ventas todo esto dentro de un try con sus correspondientes catch
+	 * @param variable
+	 */
+	private void sumTotalSales() { //
+		FileReader file;
+		BufferedReader br;
+		String registro;
+		double valorTotal = 0;
+		int count = 0;
+		String ruta = "data.csv";
+
+		try {
+			file = new FileReader(ruta);
+			br = new BufferedReader(file);
+			while ((registro = br.readLine()) != null) {
+				String[] campos = registro.split(",");
+				
+					try {
+						valorTotal += Float.parseFloat(campos[3]) * Float.parseFloat(campos[5]);
+					} catch (NumberFormatException ex) {
+					}
+				}
+				
+			
+		} catch (IOException x) {
+			vista.mostrarResultados("Ocurrio un error buscando el archivo");
+		}
+		double resultado = valorTotal ;
+		vista.mostrarResultados("TOTAL VENTAS :"+""+resultado+"$");
+	}
+	public void findByInvoiceNo() {
+	
+		String codigo="536365";
+		for (int i = 0; i < arrayCommerceData.size(); i++) {
+			if (arrayCommerceData.get(i).getInvoiceNo().equals(codigo)) {
+				System.out.println("la factura solicitada con en numero de codigo"+""+codigo+""+"es :"+""+""+arrayCommerceData.get(i).getInvoiceNo().equals(codigo)+"\n");
+				System.out.println(".....");
+			}
+			
+		}
+		System.out.println("2---");
+		}
+//		FileReader file;
+//		BufferedReader br;
+//		String registro;
+//		int cantidad = 0;
+//		String ruta = "C:\\Users\\Perez\\Taller1/data.csv";
+//
+//		try {
+//			file = new FileReader(ruta);
+//			br = new BufferedReader(file);
+//			while ((registro = br.readLine()) != null) {
+//				String[] campos = registro.split(",");
+//				if (Stringvalueof(codigo).equals(campos[0])) {
+//					factura=
+//				}
+//			}
+//		} catch (IOException x) {
+//			System.out.println("Ocurrio un error buscando el archivo");
+//		}
+		
+
+	private Object Stringvalueof(int codigo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 	public Date ubicarMes(int date) {
 
@@ -123,7 +200,7 @@ public class EcommerceDataDAO {
 	public void setArrayCommerceData(ArrayList<ECommerceData> arrayCommerceData) {
 		this.arrayCommerceData = arrayCommerceData;
 	}
-	
-	
+
+
 
 }

@@ -144,6 +144,19 @@ public class ECommerceData {
 		this.arrayCommerceData = arrayCommerceData;
 	}
 
+	@Override
+	public String toString() {
+		return "ECommerceData [invoiceNo=" + invoiceNo + ", stockCode=" + stockCode + ", description=" + description
+				+ ", quantity=" + quantity + ", invoiceDate=" + invoiceDate + ", unitPrice=" + unitPrice
+				+ ", customerID=" + customerID + ", country=" + country + ", leerCSV=" + leerCSV
+				+ ", arrayCommerceData=" + arrayCommerceData + ", getInvoiceNo()=" + getInvoiceNo()
+				+ ", getStockCode()=" + getStockCode() + ", getDescription()=" + getDescription() + ", getQuantity()="
+				+ getQuantity() + ", getInvoiceDate()=" + getInvoiceDate() + ", getUnitPrice()=" + getUnitPrice()
+				+ ", getCustomerID()=" + getCustomerID() + ", getCountry()=" + getCountry() + ", getLeerCSV()="
+				+ getLeerCSV() + ", getArrayCommerceData()=" + getArrayCommerceData() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
+
 
 	
 }
