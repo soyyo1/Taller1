@@ -152,56 +152,85 @@ public class EcommerceDataDAO {
 	 * 
 	 * @param variable
 	 */
-//	private void sumTotalSales() { //
-//		FileReader file;
-//		BufferedReader br;
-//		String registro;
-//		double valorTotal = 0;
-//		int count = 0;
-//		String ruta = "data.csv";
-//
-//		try {
-//			file = new FileReader(ruta);
-//			br = new BufferedReader(file);
-//			while ((registro = br.readLine()) != null) {
-//				String[] campos = registro.split(",");
-//
-//				try {
-//					valorTotal += Float.parseFloat(campos[3]) * Float.parseFloat(campos[5]);
-//				} catch (NumberFormatException ex) {
-//				}
-//			}
-//
-//		} catch (IOException x) {
-//			vista.mostrarResultados("Ocurrio un error buscando el archivo");
-//		}
-//		double resultado = valorTotal;
-//		vista.mostrarResultados("TOTAL VENTAS :" + "" + resultado + "$");
-//	}
+	private void sumTotalSales() { 
+		FileReader file;
+		BufferedReader br;
+		String registro;
+		double valorTotal = 0;
+		int count = 0;
+		String ruta = "data.csv";
 
-//		FileReader file;
-//		BufferedReader br;
-//		String registro;
-//		int cantidad = 0;
-//		String ruta = "C:\\Users\\Perez\\Taller1/data.csv";
-//
-//		try {
-//			file = new FileReader(ruta);
-//			br = new BufferedReader(file);
-//			while ((registro = br.readLine()) != null) {
-//				String[] campos = registro.split(",");
-//				if (Stringvalueof(codigo).equals(campos[0])) {
-//					factura=
-//				}
-//			}
-//		} catch (IOException x) {
-//			System.out.println("Ocurrio un error buscando el archivo");
-//		}
+		try {
+			file = new FileReader(ruta);
+			br = new BufferedReader(file);
+			while ((registro = br.readLine()) != null) {
+				String[] campos = registro.split(",");
 
-	private Object Stringvalueof(int codigo) {
-		// TODO Auto-generated method stub
-		return null;
+				try {
+					valorTotal += Float.parseFloat(campos[3]) * Float.parseFloat(campos[5]);
+				} catch (NumberFormatException ex) {
+				}
+			}
+
+		} catch (IOException x) {
+			vista.mostrarResultados("Ocurrio un error buscando el archivo");
+		}
+		double resultado = valorTotal;
+		vista.mostrarResultados("TOTAL VENTAS :" + "" + resultado + "$");
 	}
+
+	private Integer countByStockCode(String variable) {
+        FileReader file;
+        BufferedReader br;
+        String registro;
+        int cantidad = 0;
+        String ruta = "data.csv";
+
+        try {
+            file = new FileReader(ruta);
+            br = new BufferedReader(file);
+            while ((registro = br.readLine()) != null) {
+                String[] campos = registro.split(",");
+                if (variable.equals(campos[1])) {
+                    try {
+                        cantidad += Integer.parseInt(campos[3]);
+                    } catch (NumberFormatException ex) {
+                    }
+                }
+            }
+        } catch (IOException x) {
+            System.out.println("Ocurrio un error buscando el archivo");
+        }
+        return cantidad;
+    }	
+
+	private void avgMonthlySales(Boolean variable) {
+        FileReader file;
+        BufferedReader br;
+        String registro;
+        double valorTotal = 0;
+        int count = 0;
+        String ruta = "data.csv";
+
+        try {
+            file = new FileReader(ruta);
+            br = new BufferedReader(file);
+            while ((registro = br.readLine()) != null) {
+                String[] campos = registro.split(",");
+                if (count != 0) {
+                    try {
+                        valorTotal += Float.parseFloat(campos[3]) * Float.parseFloat(campos[5]);
+                    } catch (NumberFormatException ex) {
+                    }
+                }
+                count++;
+            }
+        } catch (IOException x) {
+            System.out.println("Ocurrio un error buscando el archivo");
+        }
+        double resultado = valorTotal / count;
+        System.out.println(resultado);
+    }	
 
 	public ArrayList<ECommerceData> getArrayCommerceData() {
 		return arrayCommerceData;
