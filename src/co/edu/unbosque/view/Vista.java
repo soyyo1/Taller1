@@ -61,6 +61,32 @@ public class Vista extends JFrame {
 				"Ingrese el detalle de la factura que desea solicitar: ");
 		return dato;
 	}
+	
+	public String pedirRequerimiento3() {
+		String dato = "";
+		dato = JOptionPane.showInputDialog(null,
+				"Ingrese el stock del cual desea mostrar la cantidad de unidades vendidas: ");
+		return dato;
+	}
+	
+	public String pedirRequerimiento4() {
+		String dato = "";
+		dato = JOptionPane.showInputDialog(null,
+				"Ingrese la descripción del producto que desea buscar: ");
+		return dato;
+	}
+	
+	public int pedirRequerimiento4MesInicial() {
+		int numero = 0;
+		numero = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el mes incial de busqueda: "));
+		return numero;
+	}
+	
+	public int pedirRequerimiento4MesFinal() {
+		int numero = 0;
+		numero = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el mes final de busqueda: "));
+		return numero;
+	}
 
 	/**
 	 * Pide un dato de tipo entero con el uso de JOptioPane

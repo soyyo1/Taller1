@@ -12,6 +12,9 @@ public class AplMain {
 		EcommerceDataDAO eCommerceDataDAO = new EcommerceDataDAO();
 
 //		eCommerceDataDAO.uploadData();
+//
+//		eCommerceDataDAO.findPartiallyByDescription("GLASS", 2, 3);
+		eCommerceDataDAO.uploadData();
 
 		Controller c = new Controller();
 //		EcommerceDataDAO eCommerceDataDAO = new EcommerceDataDAO();

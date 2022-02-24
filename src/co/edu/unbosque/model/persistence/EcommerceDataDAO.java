@@ -18,10 +18,10 @@ public class EcommerceDataDAO {
 	private ArrayList<ECommerceData> arrayCommerceData = new ArrayList<ECommerceData>();
 	private Vista vista;
 
-	public EcommerceDataDAO() {
-
-		vista = new Vista(null);
-	}
+//	public EcommerceDataDAO() {
+//
+//		vista = new Vista(null);
+//	}
 
 	public void uploadData() {
 		BufferedReader bufferLectura = null;
@@ -79,8 +79,6 @@ public class EcommerceDataDAO {
 
 		int encontrado;
 
-//		search = vista.pedirDato();
-
 		for (int i = 0; i < arrayCommerceData.size(); i++) {
 
 			encontrado = arrayCommerceData.get(i).getDescription().toLowerCase().indexOf(search.toLowerCase());
@@ -124,10 +122,11 @@ public class EcommerceDataDAO {
 
 	public void findByInvoiceNo(String codigo) {
 
+//		String codigo = "536365";
 		for (int j = 0; j < arrayCommerceData.size(); j++) {
 
 			if (arrayCommerceData.get(j).getInvoiceNo().equals(codigo)) {
-				vista.mostrarResultados("la factura solicitada con en numero de codigo     " + codigo + "" + "    es :    "
+				System.out.println("la factura solicitada con en numero de codigo     " + codigo + "" + "    es :    "
 						+ arrayCommerceData.get(j).getInvoiceNo() + ",  " + arrayCommerceData.get(j).getStockCode()
 						+ ",   " + arrayCommerceData.get(j).getDescription() + ",    "
 						+ arrayCommerceData.get(j).getQuantity() + ",   " + arrayCommerceData.get(j).getInvoiceDate()
@@ -179,7 +178,7 @@ public class EcommerceDataDAO {
 		vista.mostrarResultados("TOTAL VENTAS :  " + "" + resultado + "$");
 	}
 
-	private Integer countByStockCode(String variable) {
+	public Integer countByStockCode(String variable) {
 		FileReader file;
 		BufferedReader br;
 		String registro;
@@ -204,7 +203,7 @@ public class EcommerceDataDAO {
 		return cantidad;
 	}
 
-	private void avgMonthlySales(Boolean variable) {
+	public void avgMonthlySales() {
 		FileReader file;
 		BufferedReader br;
 		String registro;
