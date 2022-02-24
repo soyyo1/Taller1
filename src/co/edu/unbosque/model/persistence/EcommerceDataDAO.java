@@ -18,10 +18,6 @@ public class EcommerceDataDAO {
 	private ArrayList<ECommerceData> arrayCommerceData = new ArrayList<ECommerceData>();
 	private Vista vista;
 
-//	public EcommerceDataDAO() {
-//
-//		vista = new Vista(null);
-//	}
 
 	public void uploadData() {
 		BufferedReader bufferLectura = null;
@@ -172,10 +168,10 @@ public class EcommerceDataDAO {
 			}
 
 		} catch (IOException x) {
-			vista.mostrarResultados("Ocurrio un error buscando el archivo");
+			System.out.println("Ocurrio un error buscando el archivo");
 		}
 		double resultado = valorTotal;
-		vista.mostrarResultados("TOTAL VENTAS :  " + "" + resultado + "$");
+		System.out.println("TOTAL VENTAS :  " + "" + resultado + "$");
 	}
 
 	public Integer countByStockCode(String variable) {

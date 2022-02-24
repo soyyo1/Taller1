@@ -1,5 +1,7 @@
 package co.edu.unbosque.controller;
 
+import javax.swing.JOptionPane;
+
 import co.edu.unbosque.model.ECommerceData;
 import co.edu.unbosque.model.persistence.EcommerceDataDAO;
 import co.edu.unbosque.view.Vista;
@@ -11,9 +13,7 @@ public class Controller {
 
 	public Controller() {
 		vista = new Vista(this);
-//		 ecommercedata = new ECommerceData();
 		ecommercedatadao = new EcommerceDataDAO();
-//		 vista.setVisible(true);
 
 		iniciar();
 
@@ -21,42 +21,52 @@ public class Controller {
 
 	public void iniciar() {
 
-		vista.pedirRequerimientoInicial();
+		String dato = vista.pedirRequerimientoInicial();
 
-		if (vista.pedirRequerimientoInicial().equals("1")) {
+		try {
+			if (dato.equals("1")) {
 
-			ecommercedatadao.sumTotalSales();
+				ecommercedatadao.sumTotalSales();
 
-		} else if (vista.pedirRequerimientoInicial().equals("2")) {
+			} else if (dato.equals("2")) {
 
-			String factura = vista.pedirRequerimiento2();
+				String factura = vista.pedirRequerimiento2();
 
-			ecommercedatadao.uploadData();
+				ecommercedatadao.uploadData();
 
-			ecommercedatadao.findByInvoiceNo(factura);
+				ecommercedatadao.findByInvoiceNo(factura);
 
-		} else if (vista.pedirRequerimientoInicial().equals("3")) {
+			} else if (dato.equals("3")) {
 
-			String stock = vista.pedirRequerimiento3();
+				String stock = vista.pedirRequerimiento3();
 
-			vista.mostrarResultados(
-					"La cantidad de unidades vendidas del stock es: " + ecommercedatadao.countByStockCode(stock));
-		} else if (vista.pedirRequerimientoInicial().equals("4")) {
+				vista.mostrarResultados(
+						"La cantidad de unidades vendidas del stock es: " + ecommercedatadao.countByStockCode(stock));
+			} else if (dato.equals("4")) {
 
-			ecommercedatadao.avgMonthlySales();
+				ecommercedatadao.avgMonthlySales();
 
-		} else if (vista.pedirRequerimientoInicial().equals("5")) {
+			} else if (dato.equals("5")) {
 
-			String descripcion = vista.pedirRequerimiento4();
-			int fechaInicial = vista.pedirRequerimiento4MesInicial();
-			int fechaFinal = vista.pedirRequerimiento4MesFinal();
+				String descripcion = vista.pedirRequerimiento4();
+				int fechaInicial = vista.pedirRequerimiento4MesInicial();
+				int fechaFinal = vista.pedirRequerimiento4MesFinal();
 
-			ecommercedatadao.uploadData();
+				ecommercedatadao.uploadData();
 
-			ecommercedatadao.findPartiallyByDescription(descripcion, fechaInicial, fechaFinal);
-			
+				ecommercedatadao.findPartiallyByDescription(descripcion, fechaInicial, fechaFinal);
+
+			} else if (dato != "1" || dato != "2" || dato != "3" || dato != "4" || dato != "5") {
+
+				String mensaje = "Debe seleccionar entre un rango de 1 y 5";
+				vista.mostrarResultados(mensaje);
+			}
+
+		} catch (Exception e) {
+			String mensaje = "Ha sucedido un error";
+			vista.mostrarResultados(mensaje);
+
 		}
-
 	}
 
 }
