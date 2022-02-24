@@ -10,7 +10,7 @@ public class Controller {
 	 private EcommerceDataDAO ecommercedatadao;
 	 public Controller() {
 		 vista = new Vista(this);
-		 ecommercedata = new ECommerceData();
+//		 ecommercedata = new ECommerceData();
 		 ecommercedatadao= new EcommerceDataDAO();
 //		 vista.setVisible(true);
 		
