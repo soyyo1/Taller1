@@ -14,6 +14,36 @@ public class Controller {
 		 ecommercedatadao= new EcommerceDataDAO();
 //		 vista.setVisible(true);
 		
+			iniciar();
+
+		 
 	 }
+	 
+	 public void iniciar() {
+
+		 
+		 vista.pedirRequerimientoInicial();
+		 
+		 if(vista.pedirRequerimientoInicial().equals("1")) {
+			 
+			 
+			 ecommercedatadao.sumTotalSales();
+			 
+		 } else  if(vista.pedirRequerimientoInicial().equals("2")) {
+			 ecommercedatadao.uploadData();
+
+			 String factura = vista.pedirRequerimiento2();
+			 
+//			 if(factura.equals("536365")) {
+				 
+				 ecommercedatadao.findByInvoiceNo(factura);
+//			 }
+			 
+			 
+			 
+			 
+		 }
+
+		}
 	 
 }

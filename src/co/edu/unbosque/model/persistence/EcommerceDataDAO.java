@@ -18,11 +18,10 @@ public class EcommerceDataDAO {
 	private ArrayList<ECommerceData> arrayCommerceData = new ArrayList<ECommerceData>();
 	private Vista vista;
 
-//	public EcommerceDataDAO() {
-////		sumTotalSales();
-//		findByInvoiceNo();
-//		vista = new Vista(null);
-//	}
+	public EcommerceDataDAO() {
+
+		vista = new Vista(null);
+	}
 
 	public void uploadData() {
 		BufferedReader bufferLectura = null;
@@ -80,6 +79,8 @@ public class EcommerceDataDAO {
 
 		int encontrado;
 
+//		search = vista.pedirDato();
+
 		for (int i = 0; i < arrayCommerceData.size(); i++) {
 
 			encontrado = arrayCommerceData.get(i).getDescription().toLowerCase().indexOf(search.toLowerCase());
@@ -92,7 +93,8 @@ public class EcommerceDataDAO {
 
 				if (encontrado != -1) {
 
-					System.out.println(arrayCommerceData.get(i).getDescription() + "           "
+					System.out.println(arrayCommerceData.get(i).getDescription() + " -- Unidades vendidas:  "
+							+ arrayCommerceData.get(i).getQuantity() + "  ---En la fecha:        "
 							+ arrayCommerceData.get(i).getInvoiceDate());
 
 				}
@@ -120,14 +122,12 @@ public class EcommerceDataDAO {
 
 	}
 
-	public void findByInvoiceNo() {
-
-		String codigo = "536365";
+	public void findByInvoiceNo(String codigo) {
 
 		for (int j = 0; j < arrayCommerceData.size(); j++) {
 
 			if (arrayCommerceData.get(j).getInvoiceNo().equals(codigo)) {
-				System.out.println("la factura solicitada con en numero de codigo     " + codigo + "" + "    es :    "
+				vista.mostrarResultados("la factura solicitada con en numero de codigo     " + codigo + "" + "    es :    "
 						+ arrayCommerceData.get(j).getInvoiceNo() + ",  " + arrayCommerceData.get(j).getStockCode()
 						+ ",   " + arrayCommerceData.get(j).getDescription() + ",    "
 						+ arrayCommerceData.get(j).getQuantity() + ",   " + arrayCommerceData.get(j).getInvoiceDate()
@@ -152,7 +152,7 @@ public class EcommerceDataDAO {
 	 * 
 	 * @param variable
 	 */
-	private void sumTotalSales() { 
+	public void sumTotalSales() {
 		FileReader file;
 		BufferedReader br;
 		String registro;
@@ -176,61 +176,61 @@ public class EcommerceDataDAO {
 			vista.mostrarResultados("Ocurrio un error buscando el archivo");
 		}
 		double resultado = valorTotal;
-		vista.mostrarResultados("TOTAL VENTAS :" + "" + resultado + "$");
+		vista.mostrarResultados("TOTAL VENTAS :  " + "" + resultado + "$");
 	}
 
 	private Integer countByStockCode(String variable) {
-        FileReader file;
-        BufferedReader br;
-        String registro;
-        int cantidad = 0;
-        String ruta = "data.csv";
+		FileReader file;
+		BufferedReader br;
+		String registro;
+		int cantidad = 0;
+		String ruta = "data.csv";
 
-        try {
-            file = new FileReader(ruta);
-            br = new BufferedReader(file);
-            while ((registro = br.readLine()) != null) {
-                String[] campos = registro.split(",");
-                if (variable.equals(campos[1])) {
-                    try {
-                        cantidad += Integer.parseInt(campos[3]);
-                    } catch (NumberFormatException ex) {
-                    }
-                }
-            }
-        } catch (IOException x) {
-            System.out.println("Ocurrio un error buscando el archivo");
-        }
-        return cantidad;
-    }	
+		try {
+			file = new FileReader(ruta);
+			br = new BufferedReader(file);
+			while ((registro = br.readLine()) != null) {
+				String[] campos = registro.split(",");
+				if (variable.equals(campos[1])) {
+					try {
+						cantidad += Integer.parseInt(campos[3]);
+					} catch (NumberFormatException ex) {
+					}
+				}
+			}
+		} catch (IOException x) {
+			System.out.println("Ocurrio un error buscando el archivo");
+		}
+		return cantidad;
+	}
 
 	private void avgMonthlySales(Boolean variable) {
-        FileReader file;
-        BufferedReader br;
-        String registro;
-        double valorTotal = 0;
-        int count = 0;
-        String ruta = "data.csv";
+		FileReader file;
+		BufferedReader br;
+		String registro;
+		double valorTotal = 0;
+		int count = 0;
+		String ruta = "data.csv";
 
-        try {
-            file = new FileReader(ruta);
-            br = new BufferedReader(file);
-            while ((registro = br.readLine()) != null) {
-                String[] campos = registro.split(",");
-                if (count != 0) {
-                    try {
-                        valorTotal += Float.parseFloat(campos[3]) * Float.parseFloat(campos[5]);
-                    } catch (NumberFormatException ex) {
-                    }
-                }
-                count++;
-            }
-        } catch (IOException x) {
-            System.out.println("Ocurrio un error buscando el archivo");
-        }
-        double resultado = valorTotal / count;
-        System.out.println(resultado);
-    }	
+		try {
+			file = new FileReader(ruta);
+			br = new BufferedReader(file);
+			while ((registro = br.readLine()) != null) {
+				String[] campos = registro.split(",");
+				if (count != 0) {
+					try {
+						valorTotal += Float.parseFloat(campos[3]) * Float.parseFloat(campos[5]);
+					} catch (NumberFormatException ex) {
+					}
+				}
+				count++;
+			}
+		} catch (IOException x) {
+			System.out.println("Ocurrio un error buscando el archivo");
+		}
+		double resultado = valorTotal / count;
+		System.out.println(resultado);
+	}
 
 	public ArrayList<ECommerceData> getArrayCommerceData() {
 		return arrayCommerceData;
@@ -240,4 +240,7 @@ public class EcommerceDataDAO {
 		this.arrayCommerceData = arrayCommerceData;
 	}
 
+	
+
+	
 }
